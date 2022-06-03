@@ -29,3 +29,17 @@ one_seq = str(record.seq.lower())
 # convert to array
 seq_arr = np.array(list(one_seq))
 print(seq_arr[:10])
+
+
+# ----------------
+
+seq1 = SeqIO.read('fasta/NC_000011.10.fasta', "fasta")
+seq2 = SeqIO.read('fasta/NC_000012.12.fasta', "fasta")
+
+from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
+
+alignments = pairwise2.align.globalxx(seq1, seq2)
+for alignment in alignments:
+    print(alignment)
+    print(format_alignment(*alignment))
